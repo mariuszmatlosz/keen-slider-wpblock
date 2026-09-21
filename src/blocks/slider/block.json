@@ -1,0 +1,38 @@
+{
+	"$schema": "https://json.schemastore.org/block.json",
+	"apiVersion": 3,
+	"name": "keen-slider-wpblock/slider",
+	"title": "Keen Slider",
+	"category": "media",
+	"icon": "slides",
+	"description": "Slider powered by Keen Slider.",
+	"textdomain": "keen-slider-wpblock",
+	"version": "1.0.0",
+	"attributes": {
+		"loop": {
+			"type": "boolean",
+			"default": true
+		},
+		"center": {
+			"type": "boolean",
+			"default": false
+		},
+		"padding": {
+			"type": "number",
+			"default": 16
+		},
+		"arrows": {
+			"type": "boolean",
+			"default": false
+		}
+	},
+	"supports": {
+		"html": false,
+		"align": ["wide", "full"]
+	},
+	"allowedBlocks": ["keen-slider-wpblock/slide"],
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./editor.css",
+	"style": "file:./style.css",
+	"viewScript": "file:./view.js"
+}

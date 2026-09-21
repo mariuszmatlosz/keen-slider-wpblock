@@ -1,6 +1,6 @@
 MIT License
 
-Copyright (c) 2026 virgin71
+Copyright (c) 2026 Marius
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -19,3 +19,13 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+---
+
+This plugin bundles Keen Slider (https://keen-slider.io), which is licensed
+under the MIT License.
+
+Copyright (c) 2021 Eric Beyer
+
+See the Keen Slider license:
+https://github.com/rcbyr/keen-slider/blob/master/LICENSE

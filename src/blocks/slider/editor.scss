@@ -1,0 +1,10 @@
+.keen-slider-wpblock {
+	&__container {
+		border: 1px dashed #c3c4c7;
+		padding: 0.5rem;
+	}
+
+	&--has-arrows &__container {
+		padding-inline: 3rem;
+	}
+}
