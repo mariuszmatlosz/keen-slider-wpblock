@@ -14,6 +14,8 @@
  * @package KeenSliderWPBlock
  */
 
+namespace KeenSliderWPBlock;
+
 defined( 'ABSPATH' ) || exit;
 
 define( 'KEEN_SLIDER_WPBLOCK_VERSION', '1.0.0' );
@@ -23,9 +25,4 @@ define( 'KEEN_SLIDER_WPBLOCK_URL', plugin_dir_url( __FILE__ ) );
 
 require_once KEEN_SLIDER_WPBLOCK_PATH . 'includes/class-blocks.php';
 
-add_action(
-	'init',
-	static function (): void {
-		KeenSliderWPBlock\Blocks::register();
-	}
-);
+add_action( 'init', array( Blocks::class, 'register' ) );

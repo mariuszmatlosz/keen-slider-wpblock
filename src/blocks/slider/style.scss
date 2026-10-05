@@ -16,7 +16,7 @@
 
 	&__arrow {
 		position: absolute;
-		top: 50%;
+		inset-block-start: 50%;
 		z-index: 2;
 		display: flex;
 		align-items: center;
@@ -24,19 +24,27 @@
 		width: 2.5rem;
 		height: 2.5rem;
 		padding: 0;
-		border: 1px solid currentcolor;
+		border-width: 1px;
+		border-style: solid;
+		border-color: currentcolor;
 		border-radius: 0.25rem;
-		background-color: rgb(0 0 0 / 45%);
+		background-color: rgb(0 0 0 / 85%);
 		background-image: url("data:image/svg+xml,%3Csvg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M8.46967 5.46967C8.76256 5.17678 9.23744 5.17678 9.53033 5.46967L15.5303 11.4697C15.8232 11.7626 15.8232 12.2374 15.5303 12.5303L9.53033 18.5303C9.23744 18.8232 8.76256 18.8232 8.46967 18.5303C8.17678 18.2374 8.17678 17.7626 8.46967 17.4697L13.9933 12L8.46967 6.53033C8.17678 6.23744 8.17678 5.76256 8.46967 5.46967Z' fill='white'/%3E%3C/svg%3E");
 		background-position: center;
 		background-repeat: no-repeat;
 		color: #fff;
 		cursor: pointer;
 		transform: translateY(-50%);
-		transition: opacity 0.2s;
+		transition-property: opacity;
+		transition-duration: 0.2s;
 
 		&:hover:not(:disabled) {
 			opacity: 0.85;
+		}
+
+		&:focus-visible {
+			outline: 2px solid currentcolor;
+			outline-offset: 2px;
 		}
 
 		&:disabled {
@@ -44,17 +52,21 @@
 			opacity: 0.35;
 		}
 
-		&--left {
-			left: 0.75rem;
+		&--previous {
+			inset-inline-start: 0.75rem;
 			transform: translateY(-50%) rotate(180deg);
+
+			[dir='rtl'] & {
+				transform: translateY(-50%);
+			}
 		}
 
-		&--right {
-			right: 0.75rem;
+		&--next {
+			inset-inline-end: 0.75rem;
+
+			[dir='rtl'] & {
+				transform: translateY(-50%) rotate(180deg);
+			}
 		}
 	}
-}
-
-.keen-slider-wpblock .keen-slider__slide {
-	min-height: 8rem;
 }

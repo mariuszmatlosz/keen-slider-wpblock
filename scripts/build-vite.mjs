@@ -33,9 +33,9 @@ function isWpExternal(id) {
     || id === 'react/jsx-runtime'
 }
 
-async function buildEntry(entryKey, entryPath, { externalizeWp = false } = {}) {
+async function buildEntry(entryKey, entryPath, { externalizeWp = false, useReact = false } = {}) {
   await build({
-    plugins: externalizeWp ? [react({ jsxRuntime: 'classic' })] : [],
+    plugins: useReact ? [react({ jsxRuntime: 'classic' })] : [],
     build: {
       outDir,
       emptyOutDir: false,
@@ -65,11 +65,11 @@ async function buildEntry(entryKey, entryPath, { externalizeWp = false } = {}) {
 rmSync(outDir, { recursive: true, force: true })
 
 const entries = [
-  ['blocks/slider/index', resolve(pluginRoot, 'src/blocks/slider/index.js'), { externalizeWp: true }],
+  ['blocks/slider/index', resolve(pluginRoot, 'src/blocks/slider/index.js'), { externalizeWp: true, useReact: true }],
   ['blocks/slider/editor', resolve(pluginRoot, 'src/blocks/slider/editor.scss'), {}],
   ['blocks/slider/style', resolve(pluginRoot, 'src/blocks/slider/style.scss'), {}],
-  ['blocks/slider/view', resolve(pluginRoot, 'src/blocks/slider/view.js'), {}],
-  ['blocks/slide/index', resolve(pluginRoot, 'src/blocks/slide/index.js'), { externalizeWp: true }],
+  ['blocks/slider/view', resolve(pluginRoot, 'src/blocks/slider/view.js'), { externalizeWp: true }],
+  ['blocks/slide/index', resolve(pluginRoot, 'src/blocks/slide/index.js'), { externalizeWp: true, useReact: true }],
   ['blocks/slide/editor', resolve(pluginRoot, 'src/blocks/slide/editor.scss'), {}],
   ['blocks/slide/style', resolve(pluginRoot, 'src/blocks/slide/style.scss'), {}],
 ]

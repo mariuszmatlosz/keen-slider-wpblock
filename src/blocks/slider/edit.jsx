@@ -38,23 +38,23 @@ export default function Edit({ attributes, setAttributes }) {
           <ToggleControl
             label={__('Loop', 'keen-slider-wpblock')}
             checked={loop}
-            onChange={value => setAttributes({ loop: value })}
+            onChange={(value) => setAttributes({ loop: value })}
           />
           <ToggleControl
             label={__('Center position', 'keen-slider-wpblock')}
             checked={center}
-            onChange={value => setAttributes({ center: value })}
+            onChange={(value) => setAttributes({ center: value })}
           />
           <ToggleControl
             label={__('Arrows', 'keen-slider-wpblock')}
             checked={arrows}
-            onChange={value => setAttributes({ arrows: value })}
+            onChange={(value) => setAttributes({ arrows: value })}
             help={__('Show previous and next navigation arrows.', 'keen-slider-wpblock')}
           />
           <RangeControl
             label={__('Padding', 'keen-slider-wpblock')}
             value={padding}
-            onChange={value => setAttributes({ padding: value ?? 0 })}
+            onChange={(value) => setAttributes({ padding: value ?? 0 })}
             min={0}
             max={120}
             step={1}

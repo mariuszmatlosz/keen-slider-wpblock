@@ -10,12 +10,20 @@ namespace KeenSliderWPBlock;
 defined( 'ABSPATH' ) || exit;
 
 /**
- * Registers plugin blocks from the build directory.
+ * Registers the slider and slide blocks from compiled block metadata.
+ *
+ * Hooks are attached from the plugin bootstrap, not from a constructor,
+ * so registration stays easy to unhook and to call directly.
  */
 class Blocks {
 
 	/**
-	 * Register blocks.
+	 * Register each block that has a compiled block.json.
+	 *
+	 * A missing build file is skipped so a fresh checkout does not fatal
+	 * before the frontend assets have been generated.
+	 *
+	 * @return void
 	 */
 	public static function register(): void {
 		$blocks = array( 'slider', 'slide' );

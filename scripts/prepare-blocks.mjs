@@ -16,6 +16,8 @@ const EDITOR_SCRIPT_DEPS = [
   'wp-i18n',
 ]
 
+const VIEW_SCRIPT_DEPS = ['wp-i18n']
+
 const blocks = [
   { name: 'slider', hasViewScript: true },
   { name: 'slide', hasViewScript: false },
@@ -38,7 +40,7 @@ for (const block of blocks) {
   writeAssetFile(targetDir, 'index', EDITOR_SCRIPT_DEPS)
 
   if (block.hasViewScript) {
-    writeAssetFile(targetDir, 'view', [])
+    writeAssetFile(targetDir, 'view', VIEW_SCRIPT_DEPS)
   }
 }
 

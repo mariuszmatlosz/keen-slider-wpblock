@@ -1,50 +1,55 @@
+import { __ } from '@wordpress/i18n'
 import KeenSlider from 'keen-slider'
+import { getArrowDisabledState, getSliderOptions } from './options.js'
 
-function getSliderOptions(element) {
-  const loop = element.dataset.loop === 'true'
-  const center = element.dataset.center === 'true'
-  const padding = Number.parseInt(element.dataset.padding || '0', 10)
-
-  const slides = {
-    spacing: Number.isNaN(padding) ? 0 : padding,
-    perView: center ? 1.2 : 1,
-  }
-
-  if (center) {
-    slides.origin = 'center'
-  }
-
-  return {
-    loop,
-    slides,
+/**
+ * Remove a node created for the slider controls.
+ *
+ * @param {HTMLElement|undefined} element Element to remove.
+ */
+function removeElement(element) {
+  if (element?.parentNode) {
+    element.parentNode.removeChild(element)
   }
 }
 
+/**
+ * Create an accessible slider control.
+ *
+ * Buttons are built with the DOM API so the label is never parsed as HTML.
+ *
+ * @param {string}   className Control class names.
+ * @param {string}   label     Accessible name.
+ * @param {Function} onClick   Click handler.
+ * @return {HTMLButtonElement} Navigation button.
+ */
+function createButton(className, label, onClick) {
+  const button = document.createElement('button')
+  button.type = 'button'
+  button.className = className
+  button.setAttribute('aria-label', label)
+  button.addEventListener('click', onClick)
+  return button
+}
+
+/**
+ * Keen Slider plugin that adds previous and next buttons.
+ *
+ * Controls live outside the saved markup so the block stays static in the
+ * editor and only becomes interactive on the frontend.
+ *
+ * @return {Function} Plugin registered with Keen Slider.
+ */
 function createArrowsPlugin() {
   return function navigation(slider) {
     let wrapper
-    let arrowLeft
-    let arrowRight
-
-    function removeElement(element) {
-      if (element?.parentNode) {
-        element.parentNode.removeChild(element)
-      }
-    }
-
-    function createButton(className, label, onClick) {
-      const button = document.createElement('button')
-      button.type = 'button'
-      button.className = className
-      button.setAttribute('aria-label', label)
-      button.addEventListener('click', onClick)
-      return button
-    }
+    let arrowPrevious
+    let arrowNext
 
     function markup(remove) {
       if (remove) {
-        removeElement(arrowLeft)
-        removeElement(arrowRight)
+        removeElement(arrowPrevious)
+        removeElement(arrowNext)
 
         if (wrapper) {
           const parent = wrapper.parentNode
@@ -55,8 +60,8 @@ function createArrowsPlugin() {
 
           removeElement(wrapper)
           wrapper = undefined
-          arrowLeft = undefined
-          arrowRight = undefined
+          arrowPrevious = undefined
+          arrowNext = undefined
         }
 
         return
@@ -67,38 +72,35 @@ function createArrowsPlugin() {
       slider.container.parentNode.insertBefore(wrapper, slider.container)
       wrapper.appendChild(slider.container)
 
-      arrowLeft = createButton(
-        'keen-slider-wpblock__arrow keen-slider-wpblock__arrow--left',
-        'Previous slide',
+      arrowPrevious = createButton(
+        'keen-slider-wpblock__arrow keen-slider-wpblock__arrow--previous',
+        __('Previous slide', 'keen-slider-wpblock'),
         () => slider.prev(),
       )
-      arrowRight = createButton(
-        'keen-slider-wpblock__arrow keen-slider-wpblock__arrow--right',
-        'Next slide',
+      arrowNext = createButton(
+        'keen-slider-wpblock__arrow keen-slider-wpblock__arrow--next',
+        __('Next slide', 'keen-slider-wpblock'),
         () => slider.next(),
       )
 
-      wrapper.appendChild(arrowLeft)
-      wrapper.appendChild(arrowRight)
+      wrapper.appendChild(arrowPrevious)
+      wrapper.appendChild(arrowNext)
     }
 
     function updateDisabledState() {
-      if (!arrowLeft || !arrowRight) {
+      if (!arrowPrevious || !arrowNext || !slider.track.details) {
         return
       }
 
       const { rel, maxIdx } = slider.track.details
-      const atStart = rel === 0
-      const atEnd = rel === maxIdx
+      const disabled = getArrowDisabledState({
+        rel,
+        maxIdx,
+        loop: Boolean(slider.options.loop),
+      })
 
-      if (slider.options.loop) {
-        arrowLeft.disabled = false
-        arrowRight.disabled = false
-        return
-      }
-
-      arrowLeft.disabled = atStart
-      arrowRight.disabled = atEnd
+      arrowPrevious.disabled = disabled.previous
+      arrowNext.disabled = disabled.next
     }
 
     slider.on('created', () => {
@@ -115,6 +117,14 @@ function createArrowsPlugin() {
   }
 }
 
+/**
+ * Start Keen Slider for one block, once.
+ *
+ * The initialized flag guards against a second pass if the script runs
+ * again on the same container.
+ *
+ * @param {HTMLElement} element Slider block root.
+ */
 function initSlider(element) {
   const container = element.querySelector('.keen-slider-wpblock__container')
 
@@ -126,12 +136,16 @@ function initSlider(element) {
 
   const arrows = element.dataset.arrows === 'true'
   const plugins = arrows ? [createArrowsPlugin()] : []
+  const slider = new KeenSlider(container, getSliderOptions(element.dataset), plugins)
 
-  new KeenSlider(container, getSliderOptions(element), plugins)
+  container.keenSlider = slider
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-  document
-    .querySelectorAll('.wp-block-keen-slider-wpblock-slider')
-    .forEach(initSlider)
-})
+/**
+ * Initialize every slider block after the markup is available.
+ */
+function initSliders() {
+  document.querySelectorAll('.wp-block-keen-slider-wpblock-slider').forEach(initSlider)
+}
+
+document.addEventListener('DOMContentLoaded', initSliders)

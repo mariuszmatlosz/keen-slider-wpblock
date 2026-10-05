@@ -7,7 +7,8 @@
 	"type": "module",
 	"scripts": {
 		"dev": "node scripts/build-vite.mjs && node scripts/prepare-blocks.mjs",
-		"build": "node scripts/build-vite.mjs && node scripts/prepare-blocks.mjs && node scripts/sync-to-plugins.mjs"
+		"build": "node scripts/build-vite.mjs && node scripts/prepare-blocks.mjs && node scripts/sync-to-plugins.mjs",
+		"test": "vitest run"
 	},
 	"dependencies": {
 		"keen-slider": "^6.8.6"
@@ -23,6 +24,7 @@
 		"react": "^18.3.1",
 		"react-dom": "^18.3.1",
 		"sass": "^1.89.2",
-		"vite": "^6.3.5"
+		"vite": "^6.3.5",
+		"vitest": "^5.0.3"
 	}
 }

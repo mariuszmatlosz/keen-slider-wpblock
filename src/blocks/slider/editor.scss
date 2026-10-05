@@ -1,7 +1,9 @@
 .keen-slider-wpblock {
 	&__container {
-		border: 1px dashed #c3c4c7;
 		padding: 0.5rem;
+		border-width: 1px;
+		border-style: dashed;
+		border-color: #c3c4c7;
 	}
 
 	&--has-arrows &__container {
