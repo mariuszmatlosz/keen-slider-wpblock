@@ -1,0 +1,22 @@
+{
+	"name": "quantenwerft/keen-slider-wpblock",
+	"description": "Standalone WordPress block plugin for Keen Slider.",
+	"type": "wordpress-plugin",
+	"license": "MIT",
+	"require": {
+		"php": ">=8.0"
+	},
+	"require-dev": {
+		"humanmade/coding-standards": "^2.5"
+	},
+	"config": {
+		"allow-plugins": {
+			"dealerdirect/phpcodesniffer-composer-installer": true
+		},
+		"sort-packages": true
+	},
+	"scripts": {
+		"phpcs": "phpcs",
+		"phpcbf": "phpcbf"
+	}
+}

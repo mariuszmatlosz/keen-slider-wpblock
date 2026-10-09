@@ -1,9 +1,9 @@
-import { resolve } from 'node:path'
-import { fileURLToPath } from 'node:url'
-import { defineConfig } from 'vite'
+import { fileURLToPath } from 'node:url';
 
-const pluginRoot = fileURLToPath(new URL('.', import.meta.url))
+import { defineConfig } from 'vite';
 
-export default defineConfig({
-  root: pluginRoot,
-})
+const pluginRoot = fileURLToPath( new URL( '.', import.meta.url ) );
+
+export default defineConfig( {
+	root: pluginRoot,
+} );

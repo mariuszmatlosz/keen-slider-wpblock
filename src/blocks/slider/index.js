@@ -1,9 +1,10 @@
-import { registerBlockType } from '@wordpress/blocks'
-import metadata from './block.json'
-import edit from './edit.jsx'
-import save from './save.jsx'
+import { registerBlockType } from '@wordpress/blocks';
 
-registerBlockType(metadata, {
-  edit,
-  save,
-})
+import metadata from './block.json';
+import edit from './edit.jsx';
+import save from './save.jsx';
+
+registerBlockType( metadata, {
+	edit,
+	save,
+} );

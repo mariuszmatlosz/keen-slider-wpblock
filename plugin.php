@@ -18,11 +18,6 @@ namespace KeenSliderWPBlock;
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'KEEN_SLIDER_WPBLOCK_VERSION', '1.0.0' );
-define( 'KEEN_SLIDER_WPBLOCK_FILE', __FILE__ );
-define( 'KEEN_SLIDER_WPBLOCK_PATH', plugin_dir_path( __FILE__ ) );
-define( 'KEEN_SLIDER_WPBLOCK_URL', plugin_dir_url( __FILE__ ) );
+require_once __DIR__ . '/inc/namespace.php';
 
-require_once KEEN_SLIDER_WPBLOCK_PATH . 'includes/class-blocks.php';
-
-add_action( 'init', array( Blocks::class, 'register' ) );
+bootstrap();

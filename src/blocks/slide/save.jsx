@@ -1,13 +1,16 @@
-import { InnerBlocks, useBlockProps } from '@wordpress/block-editor'
+import { InnerBlocks, useBlockProps } from '@wordpress/block-editor';
 
+/**
+ * Save a slide and the blocks nested inside it.
+ */
 export default function Save() {
-  const blockProps = useBlockProps.save({
-    className: 'keen-slider-wpblock__slide keen-slider__slide',
-  })
+	const blockProps = useBlockProps.save( {
+		className: 'keen-slider-wpblock__slide keen-slider__slide',
+	} );
 
-  return (
-    <div {...blockProps}>
-      <InnerBlocks.Content />
-    </div>
-  )
+	return (
+		<div { ...blockProps }>
+			<InnerBlocks.Content />
+		</div>
+	);
 }

@@ -10,24 +10,24 @@
  * @param {string} dataset.padding Spacing between slides, in pixels.
  * @return {Object} Keen Slider constructor options.
  */
-export function getSliderOptions(dataset = {}) {
-  const loop = dataset.loop === 'true'
-  const center = dataset.center === 'true'
-  const padding = Number.parseInt(dataset.padding || '0', 10)
+export function getSliderOptions( dataset = {} ) {
+	const loop = dataset.loop === 'true';
+	const center = dataset.center === 'true';
+	const padding = Number.parseInt( dataset.padding || '0', 10 );
 
-  const slides = {
-    spacing: Number.isNaN(padding) ? 0 : padding,
-    perView: center ? 1.2 : 1,
-  }
+	const slides = {
+		spacing: Number.isNaN( padding ) ? 0 : padding,
+		perView: center ? 1.2 : 1,
+	};
 
-  if (center) {
-    slides.origin = 'center'
-  }
+	if ( center ) {
+		slides.origin = 'center';
+	}
 
-  return {
-    loop,
-    slides,
-  }
+	return {
+		loop,
+		slides,
+	};
 }
 
 /**
@@ -42,16 +42,16 @@ export function getSliderOptions(dataset = {}) {
  * @param {boolean} details.loop   Whether the slider loops.
  * @return {{previous: boolean, next: boolean}} Disabled flags for each arrow.
  */
-export function getArrowDisabledState({ rel, maxIdx, loop }) {
-  if (loop) {
-    return {
-      previous: false,
-      next: false,
-    }
-  }
+export function getArrowDisabledState( { rel, maxIdx, loop } ) {
+	if ( loop ) {
+		return {
+			previous: false,
+			next: false,
+		};
+	}
 
-  return {
-    previous: rel === 0,
-    next: rel === maxIdx,
-  }
+	return {
+		previous: rel === 0,
+		next: rel === maxIdx,
+	};
 }

@@ -1,0 +1,8 @@
+{
+	"extends": "@humanmade/stylelint-config",
+	"ignoreFiles": [
+		"build/**",
+		"node_modules/**",
+		"vendor/**"
+	]
+}

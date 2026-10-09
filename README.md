@@ -44,8 +44,8 @@ More options will come later.
 
 ```
 keen-slider-wpblock/
-├── keen-slider-wpblock.php   # plugin bootstrap
-├── includes/                 # PHP classes
+├── plugin.php                # plugin bootstrap
+├── inc/                      # PHP for the plugin namespace
 ├── src/blocks/               # block source (slider + slide)
 ├── build/blocks/             # generated assets for WP (after build)
 ├── vite.config.js

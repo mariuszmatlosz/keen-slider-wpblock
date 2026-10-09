@@ -1,18 +1,21 @@
-import { InnerBlocks, useBlockProps } from '@wordpress/block-editor'
-import { __ } from '@wordpress/i18n'
+import { InnerBlocks, useBlockProps } from '@wordpress/block-editor';
+import { __ } from '@wordpress/i18n';
 
 const TEMPLATE = [
-  ['core/paragraph', { placeholder: __('Slide content…', 'keen-slider-wpblock') }],
-]
+	[ 'core/paragraph', { placeholder: __( 'Slide content…', 'keen-slider-wpblock' ) } ],
+];
 
+/**
+ * Edit a single slide and its inner blocks.
+ */
 export default function Edit() {
-  const blockProps = useBlockProps({
-    className: 'keen-slider-wpblock__slide keen-slider__slide',
-  })
+	const blockProps = useBlockProps( {
+		className: 'keen-slider-wpblock__slide keen-slider__slide',
+	} );
 
-  return (
-    <div {...blockProps}>
-      <InnerBlocks template={TEMPLATE} />
-    </div>
-  )
+	return (
+		<div { ...blockProps }>
+			<InnerBlocks template={ TEMPLATE } />
+		</div>
+	);
 }
