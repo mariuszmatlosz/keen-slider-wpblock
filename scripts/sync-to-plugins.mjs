@@ -28,4 +28,4 @@ for ( const item of itemsToSync ) {
 	cpSync( sourcePath, resolve( targetDir, item ), { recursive: true } );
 }
 
-console.log( `Synced plugin to ${ targetDir }` );
+console.log( `Synced plugin to ${ targetDir } successfully.` );

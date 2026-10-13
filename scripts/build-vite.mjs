@@ -109,4 +109,4 @@ for ( const [ key, path, options ] of entries ) {
 	await buildEntry( key, path, options );
 }
 
-console.log( 'Block assets built completed.' );
+console.log( 'Block assets built successfully.' );
