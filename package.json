@@ -5,9 +5,11 @@
 	"description": "Standalone WordPress block plugin for Keen Slider.",
 	"license": "MIT",
 	"type": "module",
+	"packageManager": "pnpm@10.28.2",
 	"scripts": {
 		"dev": "node scripts/build-vite.mjs && node scripts/prepare-blocks.mjs",
 		"build": "node scripts/build-vite.mjs && node scripts/prepare-blocks.mjs && node scripts/sync-to-plugins.mjs",
+		"package": "node scripts/build-vite.mjs && node scripts/prepare-blocks.mjs && node scripts/package-plugin.mjs",
 		"test": "vitest run",
 		"lint": "eslint . && stylelint \"src/**/*.scss\" && composer phpcs",
 		"lint:js": "eslint .",

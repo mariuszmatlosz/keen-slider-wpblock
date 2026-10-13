@@ -7,6 +7,7 @@ export default [
 			'vendor/**',
 			'node_modules/**',
 			'build/**',
+			'release/**',
 		],
 	},
 	...humanmadeConfig,

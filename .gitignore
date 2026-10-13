@@ -1,6 +1,9 @@
 # Build files
 build/
 
+# Release package
+release/
+
 # Logs
 logs
 *.log
