@@ -36,11 +36,11 @@ jobs:
       - name: Build plugin package
         run: pnpm run package
 
-      - name: Upload plugin directory and installer
+      - name: Upload installer
         uses: actions/upload-artifact@v4
         with:
           name: keen-slider-wpblock
-          path: release/*
+          path: release/keen-slider-wpblock.zip
           if-no-files-found: error
 
       - name: Attach installer to the GitHub release

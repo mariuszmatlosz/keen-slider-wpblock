@@ -1,0 +1,19 @@
+{
+	"$schema": "https://json.schemastore.org/block.json",
+	"apiVersion": 3,
+	"name": "keen-slider-wpblock/slide",
+	"title": "Slide",
+	"category": "media",
+	"icon": "format-gallery",
+	"description": "Single slide for Keen Slider.",
+	"textdomain": "keen-slider-wpblock",
+	"version": "1.0.0",
+	"parent": ["keen-slider-wpblock/slider"],
+	"supports": {
+		"html": false,
+		"reusable": false
+	},
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./editor.css",
+	"style": "file:./style.css"
+}

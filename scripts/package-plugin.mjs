@@ -64,5 +64,9 @@ for ( const entry of requiredEntries ) {
 	}
 }
 
-console.log( `Plugin directory: ${ pluginDir }` );
+rmSync( pluginDir, {
+	recursive: true,
+	force: true,
+} );
+
 console.log( `Plugin archive: ${ resolve( releaseRoot, zipName ) }` );
